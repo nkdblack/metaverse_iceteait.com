@@ -3,15 +3,14 @@ import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons/faCog";
-import { faLanguage } from "@fortawesome/free-solid-svg-icons/faLanguage";
+// import { faLanguage } from "@fortawesome/free-solid-svg-icons/faLanguage";
 import maskEmail from "../../utils/mask-email";
 import styles from "./Header.scss";
 import { Container } from "./Container";
 import { SocialBar } from "../home/SocialBar";
 import { SignInButton } from "../home/SignInButton";
-import { Menu, MenuItem } from "@mui/material";
-import { AVAILABLE_LOCALES } from "../../assets/locales/locale_config";
-import { setLocale } from "../../utils/i18n";
+// import { AVAILABLE_LOCALES } from "../../assets/locales/locale_config";
+// import { setLocale } from "../../utils/i18n";
 
 export function Header({
   appName,
@@ -30,24 +29,6 @@ export function Header({
   onSignOut,
   isHmc
 }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = event => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleLanguage = value => {
-    setLocale(value);
-    setAnchorEl(null);
-  };
-
-  const open = Boolean(anchorEl);
-  const id = open ? "language-popover" : undefined;
-
   return (
     <header>
       <Container as="div" className={styles.container}>
@@ -93,32 +74,15 @@ export function Header({
                 </a>
               </li>
             )}
-            <li>
-              <a href="#" aria-describedby={id} onClick={handleClick}>
-                <i>
-                  <FontAwesomeIcon icon={faLanguage} />
-                </i>
-                &nbsp;
-                <FormattedMessage id="header.language" defaultMessage="Language" />
-              </a>
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  "aria-labelledby": "basic-button"
-                }}
-              >
-                {Object.keys(AVAILABLE_LOCALES).map((value, index) => {
-                  return (
-                    <MenuItem key={index} onClick={() => handleLanguage(value)}>
-                      {AVAILABLE_LOCALES[value]}
-                    </MenuItem>
-                  );
-                })}
-              </Menu>
-            </li>
+            {/*<li>*/}
+            {/*  <a href="#" aria-describedby={id} onClick={handleClick}>*/}
+            {/*    <i>*/}
+            {/*      <FontAwesomeIcon icon={faLanguage} />*/}
+            {/*    </i>*/}
+            {/*    &nbsp;*/}
+            {/*    <FormattedMessage id="header.language" defaultMessage="Language" />*/}
+            {/*  </a>*/}
+            {/*</li>*/}
             {isAdmin && (
               <li>
                 <a href="/admin" rel="noreferrer noopener">
