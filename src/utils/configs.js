@@ -1,7 +1,7 @@
 import appLogo from "../assets/images/app-logo.png";
 import appLogoDark from "../assets/images/app-logo-dark.png";
 import companyLogo from "../assets/images/company-logo.png";
-import homeHeroBackground from "../assets/images/home-hero-background-unbranded.png";
+import homeHeroBackground from "../assets/background.jpg";
 import sceneEditorLogo from "../assets/images/editor-logo.png";
 import { getLocale, getMessage } from "./i18n";
 
@@ -71,8 +71,6 @@ if (window.APP_CONFIG) {
   };
 }
 
-const isLocalDevelopment = process.env.NODE_ENV === "development";
-
 configs.feature = featureName => {
   const value = configs.APP_CONFIG && configs.APP_CONFIG.features && configs.APP_CONFIG.features[featureName];
   if (typeof value === "boolean" || featureName === "enable_spoke") {
@@ -83,18 +81,26 @@ configs.feature = featureName => {
   }
 };
 
-let localDevImages = {};
-if (isLocalDevelopment) {
-  localDevImages = {
-    logo: appLogo,
-    logo_dark: appLogoDark,
-    company_logo: companyLogo,
-    editor_logo: sceneEditorLogo,
-    home_background: homeHeroBackground
-  };
-}
+const localDevImages = {
+  logo: appLogo,
+  logo_dark: appLogoDark,
+  company_logo: companyLogo,
+  editor_logo: sceneEditorLogo,
+  home_background: homeHeroBackground
+};
 
 configs.image = (imageName, cssUrl) => {
+  switch (imageName) {
+    case "logo":
+    case "logo_dark":
+    case "company_logo":
+    case "editor_logo":
+    case "home_background":
+      return localDevImages[imageName];
+    default:
+      break;
+  }
+
   const url =
     (configs.APP_CONFIG && configs.APP_CONFIG.images && configs.APP_CONFIG.images[imageName]) ||
     localDevImages[imageName];
