@@ -2,11 +2,10 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 import { createAndRedirectToNewHub } from "../../utils/phoenix-utils";
 import { Button } from "../input/Button";
-import { useCssBreakpoints } from "react-use-css-breakpoints";
+import useBreakpoint from "../../utils/use-breakpoint";
 
 export function CreateRoomButton() {
-  const breakpoint = useCssBreakpoints();
-
+  const breakpoint = useBreakpoint();
   return (
     <Button
       thick={breakpoint === "sm" || breakpoint === "md"}

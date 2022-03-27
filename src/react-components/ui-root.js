@@ -74,7 +74,6 @@ import { PeopleSidebarContainer, userFromPresence } from "./room/PeopleSidebarCo
 import { ObjectListProvider } from "./room/useObjectList";
 import { ObjectsSidebarContainer } from "./room/ObjectsSidebarContainer";
 import { ObjectMenuContainer } from "./room/ObjectMenuContainer";
-import { useCssBreakpoints } from "react-use-css-breakpoints";
 import { PlacePopoverContainer } from "./room/PlacePopoverContainer";
 import { SharePopoverContainer } from "./room/SharePopoverContainer";
 import { VoiceButtonContainer } from "./room/VoiceButtonContainer";
@@ -94,6 +93,7 @@ import { TweetModalContainer } from "./room/TweetModalContainer";
 import { TipContainer, FullscreenTip } from "./room/TipContainer";
 import { SpectatingLabel } from "./room/SpectatingLabel";
 import { SignInMessages } from "./auth/SignInModal";
+import useBreakpoint from "../utils/use-breakpoint";
 
 const avatarEditorDebug = qsTruthy("avatarEditorDebug");
 
@@ -1622,7 +1622,7 @@ class UIRoot extends Component {
 
 function UIRootHooksWrapper(props) {
   useAccessibleOutlineStyle();
-  const breakpoint = useCssBreakpoints();
+  const breakpoint = useBreakpoint();
 
   useEffect(
     () => {
